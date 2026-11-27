@@ -1,0 +1,44 @@
+
+-- ============================================
+-- 1. Create Gold Schema
+-- ============================================
+
+CREATE SCHEMA IF NOT EXISTS online_shop_catalog.gold;
+
+-- ============================================
+-- 2. Create Gold Daily Payment Summary Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.gold.gold_daily_payment_summary
+(
+    order_date DATE,
+    total_orders BIGINT,
+    total_order_amount DOUBLE,
+    total_payment_amount DOUBLE,
+    total_payments BIGINT,
+    total_refund_amount DOUBLE,
+    total_refunds BIGINT,
+    outstanding_balance DOUBLE,
+    net_retained_amount DOUBLE
+)
+USING DELTA;
+
+-- ============================================
+-- 3. Create Gold Order Payment Summary Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.gold.gold_order_payment_summary
+(
+    order_id STRING,
+    customer_id STRING,
+    order_date DATE,
+    order_amount DOUBLE,
+    order_status STRING,
+    total_payment_amount DOUBLE,
+    total_payment BIGINT,
+    total_refund_amount DOUBLE,
+    total_refunds BIGINT,
+    outstanding_balance DOUBLE,
+    net_retained_amount DOUBLE
+)
+USING DELTA;
