@@ -1,0 +1,63 @@
+
+-- ============================================
+-- 1. Create Silver Schema
+-- ============================================
+
+CREATE SCHEMA IF NOT EXISTS online_shop_catalog.silver;
+
+-- ============================================
+-- 2. Create Silver Orders Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.silver.silver_orders
+(
+    order_id STRING,
+    customer_id STRING,
+    order_date STRING,
+    order_amount DOUBLE,
+    order_status STRING
+)
+USING DELTA;
+
+-- ============================================
+-- 3. Create Silver Payments Summary Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.silver.silver_payments_summary
+(
+    order_id STRING,
+    total_payment_amount DOUBLE,
+    total_payment BIGINT
+)
+USING DELTA;
+
+-- ============================================
+-- 4. Create Silver Payments Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.silver.silver_payments
+(
+    payment_id STRING,
+    order_id STRING,
+    payment_date STRING,
+    payment_amount DOUBLE,
+    payment_status STRING,
+    payment_method STRING
+)
+USING DELTA;
+
+-- ============================================
+-- 5. Create Silver Refunds Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.silver.silver_refunds
+(
+    refund_id STRING,
+    order_id STRING,
+    payment_id STRING,
+    refund_date STRING,
+    received_date STRING,
+    refund_amount DOUBLE,
+    refund_status STRING
+)
+USING DELTA;
