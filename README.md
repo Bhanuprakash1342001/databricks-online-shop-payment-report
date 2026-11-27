@@ -67,7 +67,7 @@ The project follows the Medallion Architecture:
 **Volume locations:**
 
 ``` text
-/Volumes/online_shop_catalog/default/landing_volume/
+/Volumes/online_shop_catalog/landing_volume/
 /Volumes/online_shop_catalog/bronze/bronze_volume/
 /Volumes/online_shop_catalog/silver/silver_volume/
 /Volumes/online_shop_catalog/gold/gold_volume/
