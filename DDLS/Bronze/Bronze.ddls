@@ -1,0 +1,58 @@
+
+-- ============================================
+-- 1. Create Catalog
+-- ============================================
+
+CREATE CATALOG IF NOT EXISTS online_shop_catalog;
+
+-- ============================================
+-- 2. Create Bronze Schema
+-- ============================================
+
+CREATE SCHEMA IF NOT EXISTS online_shop_catalog.bronze;
+
+-- ============================================
+-- 3. Create Bronze Orders Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.bronze.bronze_orders
+(
+    order_id STRING,
+    customer_id STRING,
+    order_date STRING,
+    order_amount DOUBLE,
+    order_status STRING
+)
+USING DELTA;
+
+-- ============================================
+-- 4. Create Bronze Payments Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.bronze.bronze_payments
+(
+    payment_id STRING,
+    order_id STRING,
+    payment_date STRING,
+    payment_amount DOUBLE,
+    payment_status STRING,
+    payment_method STRING
+)
+USING DELTA;
+
+-- ============================================
+-- 5. Create Bronze Refunds Table
+-- ============================================
+
+CREATE OR REPLACE TABLE online_shop_catalog.bronze.bronze_refunds
+(
+    refund_id STRING,
+    order_id STRING,
+    payment_id STRING,
+    refund_date STRING,
+    received_date STRING,
+    refund_amount DOUBLE,
+    refund_status STRING,
+    refund_reason STRING
+)
+USING DELTA;
